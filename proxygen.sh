@@ -13,7 +13,6 @@ echo "---------------------------------------------------"
 
 echo "STEP 1: reading config..."
 if [ -f ./proxygen.config ]; then
-  echo "STEP 1 SUCCESS: proxygen.config found, using it"
   . ./proxygen.config
   FILE_EXT=${FILE_EXT:-$DEFAULT_FILE_EXT}
   RESULT_DIR=${RESULT_DIR:-$DEFAULT_RESULT_DIR}
@@ -21,6 +20,11 @@ if [ -f ./proxygen.config ]; then
   ITEM_HEIGHT=${ITEM_HEIGHT:-$DEFAULT_ITEM_HEIGHT}
   PADDING_HORIZONTAL=${PADDING_HORIZONTAL:-$DEFAULT_PADDING_HORIZONTAL}
   PADDING_VERTICAL=${PADDING_VERTICAL:-$DEFAULT_PADDING_VERTICAL}
+  if [ -z "$SOURCE_DIR" ]; then
+    echo "STEP 1 FAILED: please make sure 'SOURCE_DIR' is specified in proxygen.config"
+    exit 1
+  fi
+  echo "STEP 1 SUCCESS: proxygen.config found, using it"
 else
   echo "STEP 1 FAILED: please make sure there is a 'proxygen.config' file in the root of current directory"
   exit 1
