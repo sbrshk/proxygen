@@ -18,6 +18,7 @@ Config variables (`!` means required):
 - `FILE_EXT` - image file extension (without dot), e.q. "png" (default value is `jpg`)
 - `!SOURCE_DIR` - path to the directory containing source images*
 - `RESULT_DIR` - path to the output directory (default value is `./out`)*
+- `RESULT_EXT` - result file extension (without dot), e.q. "jpg" (default value is `pdf`)
 - `ITEM_WIDTH` - width of the card on the document list in px (recommended value is `732`)**
 - `ITEM_HEIGHT` - height of the card on the document list in px (recommended value is `1018`)**
 - `CARDS_CONFIG_FILE` - path to the file containing list of cards and their copies needed to be included in the resulting file (see `cards_list.example`). When no config provided every image in the source directory will be used once.***

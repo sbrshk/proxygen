@@ -4,6 +4,7 @@ A4_WIDTH_PX=2480
 A4_HEIGHT_PX=3508
 DEFAULT_FILE_EXT=jpg
 DEFAULT_RESULT_DIR=./out
+DEFAULT_RESULT_EXT=pdf
 DEFAULT_ITEM_WIDTH=732
 DEFAULT_ITEM_HEIGHT=1018
 
@@ -16,6 +17,7 @@ if [ -f ./proxygen.config ]; then
   . ./proxygen.config
   FILE_EXT=${FILE_EXT:-$DEFAULT_FILE_EXT}
   RESULT_DIR=${RESULT_DIR:-$DEFAULT_RESULT_DIR}
+  RESULT_EXT=${RESULT_EXT:-$DEFAULT_RESULT_EXT}
   ITEM_WIDTH=${ITEM_WIDTH:-$DEFAULT_ITEM_WIDTH}
   ITEM_HEIGHT=${ITEM_HEIGHT:-$DEFAULT_ITEM_HEIGHT}
   PADDING_HORIZONTAL=$(( (A4_WIDTH_PX - ITEM_WIDTH * 3) / 2 ))
@@ -61,7 +63,7 @@ rm -rf ./tmp/cards_list
 echo "STEP 5: Generating PDF file..."
 magick convert "tmp/*.$FILE_EXT" \
   -scale $((ITEM_WIDTH * 3))x"$((ITEM_HEIGHT * 3))" \
-  -bordercolor white \
+  -bordercolor transparent \
   -border $((PADDING_HORIZONTAL))x$((PADDING_VERTICAL)) \
   -extent ${A4_WIDTH_PX}x"${A4_HEIGHT_PX}" \
   -draw "line $((ITEM_WIDTH + PADDING_HORIZONTAL)),0 $((ITEM_WIDTH + PADDING_HORIZONTAL)),$((PADDING_VERTICAL))" \
@@ -72,7 +74,7 @@ magick convert "tmp/*.$FILE_EXT" \
   -draw "line 0,$((ITEM_HEIGHT * 2 + PADDING_VERTICAL)) $((PADDING_HORIZONTAL)),$((ITEM_HEIGHT * 2 + PADDING_VERTICAL))" \
   -draw "line $((ITEM_WIDTH * 3 + PADDING_HORIZONTAL)),$((ITEM_HEIGHT + PADDING_VERTICAL)) $((ITEM_WIDTH * 3 + PADDING_HORIZONTAL * 2)),$((ITEM_HEIGHT + PADDING_VERTICAL))" \
   -draw "line $((ITEM_WIDTH * 3 + PADDING_HORIZONTAL)),$((ITEM_HEIGHT * 2 + PADDING_VERTICAL)) $((ITEM_WIDTH * 3 + PADDING_HORIZONTAL * 2)),$((ITEM_HEIGHT * 2 + PADDING_VERTICAL))" \
-  out/proxy.pdf
+  out/proxy."$RESULT_EXT"
 
 rm -rf ./tmp
 
