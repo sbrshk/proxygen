@@ -20,8 +20,6 @@ Config variables (`!` means required):
 - `RESULT_DIR` - path to the output directory (default value is `./out`)*
 - `ITEM_WIDTH` - width of the card on the document list in px (recommended value is `732`)**
 - `ITEM_HEIGHT` - height of the card on the document list in px (recommended value is `1018`)**
-- `PADDING_HORIZONTAL` - horizontal padding of the list in px (recommended value is `142`)**
-- `PADDING_VERTICAL` - vertical padding of the list in px (recommended value is `221`)**
 - `CARDS_CONFIG_FILE` - path to the file containing list of cards and their copies needed to be included in the resulting file (see `cards_list.example`). When no config provided every image in the source directory will be used once.***
 
 (*) - all paths are relative to the directory containing `proxygen.sh` file
